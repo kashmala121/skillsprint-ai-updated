@@ -1,0 +1,242 @@
+[
+  {
+    "filename": "Employee_Handbook_v1.docx",
+    "title": "Employee Handbook",
+    "doc_type": "EmployeeHandbook",
+    "department": "All",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": null
+  },
+  {
+    "filename": "Employee_Handbook_v2.docx",
+    "title": "Employee Handbook",
+    "doc_type": "EmployeeHandbook",
+    "department": "All",
+    "version": "2.0",
+    "effective_date": "2026-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": "Employee_Handbook_v1.docx"
+  },
+  {
+    "filename": "HR_Policy_v1.docx",
+    "title": "HR Policy",
+    "doc_type": "Policy",
+    "department": "HR",
+    "version": "1.0",
+    "effective_date": "2024-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": null
+  },
+  {
+    "filename": "HR_Policy_v2.docx",
+    "title": "HR Policy",
+    "doc_type": "Policy",
+    "department": "HR",
+    "version": "2.0",
+    "effective_date": "2026-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": "HR_Policy_v1.docx"
+  },
+  {
+    "filename": "Leave_Policy_v1.docx",
+    "title": "Leave Policy",
+    "doc_type": "Policy",
+    "department": "HR",
+    "version": "1.0",
+    "effective_date": "2024-06-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": null
+  },
+  {
+    "filename": "Leave_Policy_v2.docx",
+    "title": "Leave Policy",
+    "doc_type": "Policy",
+    "department": "HR",
+    "version": "2.0",
+    "effective_date": "2026-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": "Leave_Policy_v1.docx"
+  },
+  {
+    "filename": "Information_Security_Policy_v1.docx",
+    "title": "Information Security Policy",
+    "doc_type": "Policy",
+    "department": "IT",
+    "version": "1.0",
+    "effective_date": "2025-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": null
+  },
+  {
+    "filename": "Workplace_Conduct_Policy_v1.docx",
+    "title": "Workplace Conduct Policy",
+    "doc_type": "Policy",
+    "department": "HR",
+    "version": "1.0",
+    "effective_date": "2025-01-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Data_Privacy_Policy_v1.docx",
+    "title": "Data Privacy Policy",
+    "doc_type": "Policy",
+    "department": "Compliance",
+    "version": "1.0",
+    "effective_date": "2025-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": null
+  },
+  {
+    "filename": "Compliance_Requirements_v1.docx",
+    "title": "Compliance Requirements",
+    "doc_type": "ComplianceDoc",
+    "department": "Compliance",
+    "version": "1.0",
+    "effective_date": "2025-01-01",
+    "precedence_category": "Latest Approved Policy",
+    "supersedes": null
+  },
+  {
+    "filename": "Escalation_Procedures_v1.docx",
+    "title": "Escalation Procedures",
+    "doc_type": "ProcessManual",
+    "department": "Operations",
+    "version": "1.0",
+    "effective_date": "2025-01-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "General_FAQ.docx",
+    "title": "General FAQ",
+    "doc_type": "FAQ",
+    "department": "All",
+    "version": "1.0",
+    "effective_date": "2025-06-01",
+    "precedence_category": "FAQ",
+    "supersedes": null
+  },
+  {
+    "filename": "Sales_Executive_SOP.docx",
+    "title": "Sales Executive SOP",
+    "doc_type": "SOP",
+    "department": "Sales Executive",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Customer_Support_Executive_SOP.docx",
+    "title": "Customer Support Executive SOP",
+    "doc_type": "SOP",
+    "department": "Customer Support Executive",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "HR_Executive_SOP.docx",
+    "title": "HR Executive SOP",
+    "doc_type": "SOP",
+    "department": "HR Executive",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Finance_Associate_SOP.docx",
+    "title": "Finance Associate SOP",
+    "doc_type": "SOP",
+    "department": "Finance Associate",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Operations_Coordinator_SOP.docx",
+    "title": "Operations Coordinator SOP",
+    "doc_type": "SOP",
+    "department": "Operations Coordinator",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Marketing_Executive_SOP.docx",
+    "title": "Marketing Executive SOP",
+    "doc_type": "SOP",
+    "department": "Marketing Executive",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Software_Support_Engineer_SOP.docx",
+    "title": "Software Support Engineer SOP",
+    "doc_type": "SOP",
+    "department": "Software Support Engineer",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Branch_Manager_SOP.docx",
+    "title": "Branch Manager SOP",
+    "doc_type": "SOP",
+    "department": "Branch Manager",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Data_Analyst_SOP.docx",
+    "title": "Data Analyst SOP",
+    "doc_type": "SOP",
+    "department": "Data Analyst",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Team_Leader_SOP.docx",
+    "title": "Team Leader SOP",
+    "doc_type": "SOP",
+    "department": "Team Leader",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Customer_Support_SOP.docx",
+    "title": "Customer Support SOP (SOP-07)",
+    "doc_type": "SOP",
+    "department": "Customer Support Executive",
+    "version": "1.0",
+    "effective_date": "2025-03-01",
+    "precedence_category": "Department SOP",
+    "supersedes": null
+  },
+  {
+    "filename": "Sales_FAQ.docx",
+    "title": "Sales FAQ",
+    "doc_type": "FAQ",
+    "department": "Sales Executive",
+    "version": "1.0",
+    "effective_date": "2025-06-01",
+    "precedence_category": "FAQ",
+    "supersedes": null
+  }
+]

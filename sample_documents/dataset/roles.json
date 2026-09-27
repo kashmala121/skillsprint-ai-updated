@@ -1,0 +1,52 @@
+[
+  {
+    "role_name": "Sales Executive",
+    "department": "Sales Executive",
+    "description": "Sales Executive at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Customer Support Executive",
+    "department": "Customer Support Executive",
+    "description": "Customer Support Executive at Nimbus Retail Co"
+  },
+  {
+    "role_name": "HR Executive",
+    "department": "HR Executive",
+    "description": "HR Executive at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Finance Associate",
+    "department": "Finance Associate",
+    "description": "Finance Associate at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Operations Coordinator",
+    "department": "Operations Coordinator",
+    "description": "Operations Coordinator at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Marketing Executive",
+    "department": "Marketing Executive",
+    "description": "Marketing Executive at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Software Support Engineer",
+    "department": "Software Support Engineer",
+    "description": "Software Support Engineer at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Branch Manager",
+    "department": "Branch Manager",
+    "description": "Branch Manager at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Data Analyst",
+    "department": "Data Analyst",
+    "description": "Data Analyst at Nimbus Retail Co"
+  },
+  {
+    "role_name": "Team Leader",
+    "department": "Team Leader",
+    "description": "Team Leader at Nimbus Retail Co"
+  }
+]
