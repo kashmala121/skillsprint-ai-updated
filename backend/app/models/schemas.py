@@ -14,6 +14,7 @@ class UserCreate(BaseModel):
     password: str
     role: Literal["admin", "training_manager", "reviewer", "manager", "employee"] = "employee"
     full_name: Optional[str] = None
+    employee_id: Optional[str] = None
 
 
 class UserLogin(BaseModel):
@@ -25,6 +26,7 @@ class UserUpdate(BaseModel):
     full_name: Optional[str] = None
     current_password: Optional[str] = None
     new_password: Optional[str] = None
+    employee_id: Optional[str] = None
 
 
 # ---------------- Roles ----------------

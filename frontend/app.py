@@ -79,6 +79,11 @@ if not is_authenticated:
                         ["employee", "manager", "training_manager", "reviewer", "admin"],
                         format_func=lambda r: r.replace("_", " ").title(),
                     )
+                    r_employee_id = st.text_input(
+                        "Employee ID (only for the Employee role)",
+                        placeholder="e.g. EMP-08d7da2c6d — ask your admin",
+                        help="Links your login to your employee profile so your dashboard shows only your own onboarding progress. Leave blank if you're not signing up as an Employee, or link it later from Update Profile.",
+                    )
                     r_password = st.text_input("Choose a Password", type="password", placeholder="Minimum 6 characters")
                     r_password_confirm = st.text_input("Confirm Password", type="password")
                     r_submitted = st.form_submit_button("Create Account", use_container_width=True, type="primary")
@@ -90,7 +95,7 @@ if not is_authenticated:
                         elif len(r_password) < 6:
                             st.error("Password must be at least 6 characters.")
                         else:
-                            ok, data = register(r_username, r_password, r_role, r_full_name)
+                            ok, data = register(r_username, r_password, r_role, r_full_name, r_employee_id or None)
                             if ok:
                                 st.success("Account created. You can now sign in from the 'Sign In' tab.")
                             else:

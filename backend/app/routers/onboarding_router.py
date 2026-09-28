@@ -136,6 +136,8 @@ async def consistency_check(payload: OnboardingGenerateRequest,
 @router.get("/plan/{employee_id}")
 async def get_plan(employee_id: str, user=Depends(require_roles(
         "admin", "training_manager", "reviewer", "manager", "employee"))):
+    if user["role"] == "employee" and user.get("employee_id") != employee_id:
+        raise HTTPException(status_code=403, detail="You can only view your own onboarding plan")
     plan = await onboarding_plans_col.find_one(
         {"employee_id": employee_id}, {"_id": 0}, sort=[("generated_at", -1)]
     )

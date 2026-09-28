@@ -32,7 +32,7 @@ NAV_PAGES = [
     ("Generate_Onboarding", "Generate", "pages/4_Generate_Onboarding.py"),
     ("Validation_Review", "Validation", "pages/5_Validation_Review.py"),
     ("Admin_Dashboard", "Admin", "pages/6_Admin_Dashboard.py"),
-    ("Employee_Dashboard", "My Dashboard", "pages/7_Employee_Dashboard.py"),
+    ("Employee_Dashboard", "Employee Dashboard", "pages/7_Employee_Dashboard.py"),
 ]
 
 
@@ -369,7 +369,7 @@ SIDEBAR_SECTIONS = [
     ]),
     ("Insights", [
         ("Admin_Dashboard", "📊  Admin Dashboard", "pages/6_Admin_Dashboard.py", ("admin", "training_manager", "reviewer")),
-        ("Employee_Dashboard", "🎯  My Dashboard", "pages/7_Employee_Dashboard.py", ("employee", "manager", "admin")),
+        ("Employee_Dashboard", "🎯  Employee Dashboard", "pages/7_Employee_Dashboard.py", ("employee", "manager", "admin", "training_manager", "reviewer")),
     ]),
 ]
 
@@ -416,6 +416,14 @@ def sidebar_nav(active: str, username: str = "", role: str = ""):
                 from utils.api_client import update_profile
                 with st.form("ss_update_profile_form"):
                     new_full_name = st.text_input("Full Name", value=st.session_state.get("full_name", ""))
+                    new_employee_id = None
+                    if role_key == "employee":
+                        new_employee_id = st.text_input(
+                            "Linked Employee ID",
+                            value=st.session_state.get("employee_id", ""),
+                            placeholder="e.g. EMP-08d7da2c6d — ask your admin",
+                            help="This links your login to your employee profile so your dashboard only shows your own onboarding progress.",
+                        )
                     st.markdown('<div class="ss-muted" style="font-size:0.75rem; margin-top:0.4rem;">Leave the fields below empty to keep your current password.</div>', unsafe_allow_html=True)
                     cur_pw = st.text_input("Current Password", type="password", key="ss_up_cur_pw")
                     new_pw = st.text_input("New Password", type="password", key="ss_up_new_pw")
@@ -431,14 +439,14 @@ def sidebar_nav(active: str, username: str = "", role: str = ""):
                             elif len(new_pw) < 6:
                                 st.error("New password must be at least 6 characters.")
                             else:
-                                ok, data = update_profile(new_full_name, cur_pw, new_pw)
+                                ok, data = update_profile(new_full_name, cur_pw, new_pw, employee_id=new_employee_id)
                                 if ok:
                                     st.success("Profile updated.")
                                     st.rerun()
                                 else:
                                     st.error(f"Update failed: {data}")
                         else:
-                            ok, data = update_profile(new_full_name)
+                            ok, data = update_profile(new_full_name, employee_id=new_employee_id)
                             if ok:
                                 st.success("Profile updated.")
                                 st.rerun()
@@ -452,41 +460,17 @@ def sidebar_nav(active: str, username: str = "", role: str = ""):
 
 
 def topnav(active: str, authenticated: bool, username: str = "", role: str = ""):
-    """Renders a slim top bar (brand only) and, when authenticated, the
-    grouped left-sidebar navigation. st.page_link is used everywhere (never
-    raw <a href>) because raw anchors force a full browser reload, which
-    would wipe Streamlit's session_state and silently log the user out.
+    """Renders the grouped left-sidebar navigation for authenticated pages.
+    st.page_link is used everywhere (never raw <a href>) because raw anchors
+    force a full browser reload, which would wipe Streamlit's session_state
+    and silently log the user out.
 
-    On the logged-out (login/register) screen there is nothing useful to put
-    in a top bar — the hero title below already carries the brand — so it is
-    skipped entirely rather than rendering an empty bordered strip above the
-    page title."""
-    if not authenticated:
-        return
-    st.markdown('<div id="ss-navbar-anchor"></div>', unsafe_allow_html=True)
-    with st.container(border=True):
-        left_col, right_col = st.columns([8, 2])
-        with left_col:
-            st.markdown(_clean("""
-                <div style="display:flex; align-items:center; gap:0.6rem; padding-top:0.3rem;">
-                    <span class="ss-logo-text">◆ SkillSprint AI</span>
-                    <span class="ss-navbar-status"><span class="dot"></span>LIVE</span>
-                </div>
-            """), unsafe_allow_html=True)
-        with right_col:
-            if authenticated:
-                initial = (username or "?")[0].upper()
-                st.markdown(_clean(f"""
-                    <div style="display:flex; align-items:center; justify-content:flex-end; gap:0.6rem; padding-top:0.15rem;">
-                        <div style="text-align:right; line-height:1.15;">
-                            <div style="font-weight:700; font-size:0.82rem;">{username}</div>
-                            <div style="font-size:0.7rem; color:#E4C766; text-transform:uppercase; letter-spacing:0.4px;">{role}</div>
-                        </div>
-                        <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#C9A227,#7A611A);
-                                    display:flex; align-items:center; justify-content:center; font-weight:700; color:#14140F; font-size:0.85rem;">{initial}</div>
-                    </div>
-                """), unsafe_allow_html=True)
-
+    There used to also be a bordered top bar here repeating the brand name
+    and the username/avatar — but the sidebar already shows the brand at
+    the top and the user's name/role/avatar in its own card at the bottom,
+    so that strip was pure duplication (and looked like a stray empty box
+    with no content on the login screen). It has been removed entirely;
+    the sidebar is now the single source of navigation and identity."""
     if authenticated:
         sidebar_nav(active, username, role)
 

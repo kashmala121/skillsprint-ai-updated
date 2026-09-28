@@ -32,6 +32,8 @@ class ProgressUpdate(BaseModel):
 @router.post("/progress/update")
 async def update_progress(payload: ProgressUpdate,
                            user=Depends(require_roles("admin", "training_manager", "employee"))):
+    if user["role"] == "employee" and user.get("employee_id") != payload.employee_id:
+        raise HTTPException(status_code=403, detail="You can only update your own progress")
     field_map = {
         "module": "module_completion", "checklist": "checklist_completion",
         "task": "task_completion", "quiz": "quiz_scores", "assessment": "assessment_scores",
@@ -52,6 +54,8 @@ async def update_progress(payload: ProgressUpdate,
 @router.get("/progress/{employee_id}")
 async def get_progress(employee_id: str, user=Depends(require_roles(
         "admin", "training_manager", "reviewer", "manager", "employee"))):
+    if user["role"] == "employee" and user.get("employee_id") != employee_id:
+        raise HTTPException(status_code=403, detail="You can only view your own progress")
     progress = await progress_col.find_one({"employee_id": employee_id}, {"_id": 0})
     if not progress:
         raise HTTPException(status_code=404, detail="No progress record found")

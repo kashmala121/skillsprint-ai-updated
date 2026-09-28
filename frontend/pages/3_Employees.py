@@ -41,10 +41,17 @@ with st.container(border=True):
                 }
                 resp = api_post("/employees/", json=payload)
                 if resp.status_code == 200:
-                    st.success(f"Employee created: {resp.json()['employee_id']}")
+                    st.session_state["_last_created_employee_id"] = resp.json()["employee_id"]
                     st.rerun()
                 else:
                     st.error(resp.json().get("detail"))
+
+_last_id = st.session_state.pop("_last_created_employee_id", None)
+if _last_id:
+    st.success(
+        f"Employee created — ID: **{_last_id}**. Share this ID with them: they'll enter it under "
+        "*Update Profile → Linked Employee ID* (or at sign-up) so their Employee Dashboard shows their own progress."
+    )
 
 theme.divider()
 st.markdown("### Employee Directory")

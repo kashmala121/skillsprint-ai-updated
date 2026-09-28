@@ -18,16 +18,19 @@ def login(username: str, password: str):
         st.session_state["role"] = data["role"]
         st.session_state["username"] = data["username"]
         ok_me, me_data = get_me()
-        if ok_me and me_data.get("full_name"):
-            st.session_state["full_name"] = me_data["full_name"]
+        if ok_me:
+            if me_data.get("full_name"):
+                st.session_state["full_name"] = me_data["full_name"]
+            if me_data.get("employee_id"):
+                st.session_state["employee_id"] = me_data["employee_id"]
         return True, data
     return False, resp.json().get("detail", "Login failed")
 
 
-def register(username: str, password: str, role: str = "employee", full_name: str = None):
+def register(username: str, password: str, role: str = "employee", full_name: str = None, employee_id: str = None):
     resp = requests.post(
         f"{BACKEND_URL}/auth/register",
-        json={"username": username, "password": password, "role": role, "full_name": full_name},
+        json={"username": username, "password": password, "role": role, "full_name": full_name, "employee_id": employee_id},
     )
     if resp.status_code == 200:
         return True, resp.json()
@@ -38,7 +41,7 @@ def register(username: str, password: str, role: str = "employee", full_name: st
 
 
 def logout():
-    for key in ("token", "role", "username", "full_name"):
+    for key in ("token", "role", "username", "full_name", "employee_id"):
         st.session_state.pop(key, None)
 
 
@@ -49,18 +52,22 @@ def get_me():
     return False, None
 
 
-def update_profile(full_name: str = None, current_password: str = None, new_password: str = None):
+def update_profile(full_name: str = None, current_password: str = None, new_password: str = None, employee_id: str = None):
     payload = {}
     if full_name is not None:
         payload["full_name"] = full_name
     if new_password:
         payload["current_password"] = current_password
         payload["new_password"] = new_password
+    if employee_id is not None:
+        payload["employee_id"] = employee_id
     resp = requests.put(f"{BACKEND_URL}/auth/me", headers=_headers(), json=payload)
     if resp.status_code == 200:
         data = resp.json()
         if "full_name" in data:
             st.session_state["full_name"] = data["full_name"]
+        if data.get("employee_id"):
+            st.session_state["employee_id"] = data["employee_id"]
         return True, data
     try:
         return False, resp.json().get("detail", "Update failed")

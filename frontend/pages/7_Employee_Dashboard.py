@@ -18,16 +18,39 @@ theme.hero(
     eyebrow="Your Journey",
 )
 
-emp_resp = api_get("/employees/")
-employees = emp_resp.json() if emp_resp.status_code == 200 else []
-emp_options = {f"{e['name']} ({e['employee_id']})": e["employee_id"] for e in employees}
+current_role = st.session_state.get("role", "")
+is_self_service = current_role == "employee"
 
-if not emp_options:
-    st.info("No employees available yet.")
-    st.stop()
+if is_self_service:
+    # An employee login only ever sees their own onboarding — never a
+    # roster of everyone else's — so there is no picker here at all.
+    my_employee_id = st.session_state.get("employee_id")
+    if not my_employee_id:
+        st.warning(
+            "Your account isn't linked to an employee profile yet, so there's nothing to show here. "
+            "Open **Update Profile** in the sidebar and enter the Employee ID your administrator gave you."
+        )
+        st.stop()
+    emp_resp = api_get(f"/employees/{my_employee_id}")
+    if emp_resp.status_code != 200:
+        st.error("Your linked employee profile could not be found. Ask your administrator to check the Employee ID.")
+        st.stop()
+    employee = emp_resp.json()
+    employee_id = employee["employee_id"]
+    selected = f"{employee['name']} ({employee['employee_id']})"
+else:
+    # Admins, training managers, reviewers and people-managers use this same
+    # page as an oversight tool and may look up any employee's progress.
+    emp_resp = api_get("/employees/")
+    employees = emp_resp.json() if emp_resp.status_code == 200 else []
+    emp_options = {f"{e['name']} ({e['employee_id']})": e["employee_id"] for e in employees}
 
-selected = st.selectbox("View onboarding for", list(emp_options.keys()))
-employee_id = emp_options[selected]
+    if not emp_options:
+        st.info("No employees available yet.")
+        st.stop()
+
+    selected = st.selectbox("Viewing onboarding for", list(emp_options.keys()))
+    employee_id = emp_options[selected]
 
 plan_resp = api_get(f"/onboarding/plan/{employee_id}")
 if plan_resp.status_code != 200:
