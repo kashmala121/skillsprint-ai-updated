@@ -2,7 +2,7 @@ import os
 import requests
 import streamlit as st
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+BACKEND_URL = st.secrets.get("BACKEND_URL", os.getenv("BACKEND_URL", "https://skillsprint-ai-backend-production.up.railway.app")).rstrip("/")
 
 
 def _headers():
